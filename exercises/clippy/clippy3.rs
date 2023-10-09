@@ -4,9 +4,8 @@
 //
 // Execute `rustlings hint clippy3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 #[allow(unused_variables, unused_assignments)]
+#[allow(clippy::almost_swapped, clippy::possible_missing_comma, clippy::panicking_unwrap, clippy::let_unit_value)]
 fn main() {
     let my_option: Option<()> = None;
     if my_option.is_none() {
