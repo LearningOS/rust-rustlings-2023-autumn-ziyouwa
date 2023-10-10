@@ -22,8 +22,6 @@
 // Execute `rustlings hint tests5` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 /// # Safety
 ///
 /// The `address` must contain a mutable reference to a valid `u32` value.
@@ -34,7 +32,7 @@ unsafe fn modify_by_address(address: usize) {
     unsafe {
         // SAFETY: The address is guaranteed to be valid and contains
         // a unique reference to a `u32` local variable.
-        let  t = &address  as *const u32;
+        let t = &mut *(address as *const u32 as *mut u32);
         *t = 0xAABBCCDD;
     }
 }
@@ -48,6 +46,7 @@ mod tests {
         let mut t: u32 = 0x12345678;
         // SAFETY: The address is guaranteed to be valid and contains
         // a unique reference to a `u32` local variable.
+        // dbg!(&mut t as *mut u32 as usize);
         unsafe { modify_by_address(&mut t as *mut u32 as usize) };
         assert!(t == 0xAABBCCDD);
     }
